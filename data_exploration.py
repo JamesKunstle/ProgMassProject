@@ -10,12 +10,14 @@ def main():
 
     police_df['OTHOURS'] = pd.to_numeric( police_df['OTHOURS'])
 
-    print( police_df.groupby('NAME').OTHOURS.sum() )
+    #print( police_df.groupby('NAME').OTHOURS.sum() )
 
-    plt.plot( police_df.groupby('NAME')["OTHOURS"].sum() )
+    officer_OT = police_df.groupby('NAME')["OTHOURS"].sum()
+    
+    plt.plot( officer_OT[ officer_OT > 500 ] )
     plt.xticks(rotation=90)
     plt.yticks(rotation=45)
     plt.show()
-    
+
 if __name__ == "__main__":
     main()
